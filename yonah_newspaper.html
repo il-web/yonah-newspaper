@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עיתון תרשיש העתיק - פרשת יונה</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4e8d0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 69, 19, 0.03) 2px, rgba(139, 69, 19, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 69, 19, 0.03) 2px, rgba(139, 69, 19, 0.03) 4px);
+            padding: 20px;
+            color: #2c1810;
+        }
+
+        .newspaper {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #faf6ed;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            border: 3px double #8b4513;
+            position: relative;
+        }
+
+        .newspaper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .stain {
+            position: absolute;
+            background-color: rgba(139, 69, 19, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .stain1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+        }
+
+        .stain2 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 8%;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px double #8b4513;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-decoration {
+            font-size: 24px;
+            color: #8b4513;
+            margin: 10px 0;
+        }
+
+        .newspaper-title {
+            font-size: 56px;
+            font-weight: bold;
+            color: #2c1810;
+            text-shadow: 2px 2px 0px rgba(139, 69, 19, 0.2);
+            margin: 15px 0;
+            letter-spacing: 3px;
+            font-family: 'Palatino', 'Book Antiqua', serif;
+        }
+
+        .newspaper-subtitle {
+            font-size: 16px;
+            color: #5d4037;
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .date-issue {
+            font-size: 14px;
+            color: #6d4c41;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .main-headline {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0 20px 0;
+            color: #1a0f0a;
+            line-height: 1.3;
+            border-top: 2px solid #8b4513;
+            border-bottom: 2px solid #8b4513;
+            padding: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subheadline {
+            font-size: 22px;
+            text-align: center;
+            margin: 20px 0;
+            color: #4a3429;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .byline {
+            text-align: center;
+            font-size: 14px;
+            color: #6d4c41;
+            margin: 15px 0 30px 0;
+            font-weight: bold;
+        }
+
+        .columns {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 1px solid #8b4513;
+            text-align: justify;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-text {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            hyphens: auto;
+        }
+
+        .dropcap {
+            float: right;
+            font-size: 60px;
+            line-height: 50px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            font-weight: bold;
+            color: #8b4513;
+            margin-left: 5px;
+        }
+
+        .quote-box {
+            background-color: #f0e6d2;
+            border: 2px solid #8b4513;
+            padding: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.1);
+        }
+
+        .quote-box::before {
+            content: '״';
+            font-size: 40px;
+            color: #8b4513;
+            display: block;
+            margin-bottom: -15px;
+        }
+
+        .quote-box::after {
+            content: '״';
+            font-size: 40px;
+            color: #8b4513;
+            display: block;
+            margin-top: -15px;
+        }
+
+        .section-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c1810;
+            margin: 30px 0 15px 0;
+            text-align: center;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 10px;
+            column-span: all;
+        }
+
+        .opinion {
+            background-color: #fdf8f0;
+            border-right: 4px solid #8b4513;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+
+        .opinion-author {
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px double #8b4513;
+            text-align: center;
+            font-size: 12px;
+            color: #6d4c41;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advertisement {
+            border: 2px solid #8b4513;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            background-color: #fdf8f0;
+            font-size: 14px;
+            column-span: all;
+        }
+
+        .advertisement-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #8b4513;
+        }
+
+        @media (max-width: 768px) {
+            .columns {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 36px;
+            }
+            
+            .main-headline {
+                font-size: 28px;
+            }
+            
+            .newspaper {
+                padding: 20px;
+            }
+        }
+
+        .breaking-news {
+            background-color: #8b4513;
+            color: #faf6ed;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="newspaper">
+        <div class="stain stain1"></div>
+        <div class="stain stain2"></div>
+        
+        <div class="breaking-news">
+            ⚡ חדשות דחופות מהים ⚡
+        </div>
+
+        <div class="header">
+            <div class="header-decoration">✦ ✦ ✦</div>
+            <h1 class="newspaper-title">עיתון תרשיש</h1>
+            <p class="newspaper-subtitle">העיתון המהימן ביותר בממלכה • מאז שנת 850 לפני הספירה</p>
+            <p class="date-issue">יום שני, י״ז באב | מהדורת בוקר | נכתב בעזרת בינה מלאכותית ונערך על ידי עילאי פלדמן</p>
+            <div class="header-decoration">✦ ✦ ✦</div>
+        </div>
+
+        <h2 class="main-headline">איש הושלך אל הים הסוער: רצח או הצלה?</h2>
+        
+        <h3 class="subheadline">נוסע בשם יונה בן אמיתי נזרק מספינה • הקברניט: "לא היתה לנו ברירה" • העיר בסערה</h3>
+        
+        <p class="byline">מאת: אלעזר בן צדוק, כתב ימי בכיר | תרשיש</p>
+
+        <div class="columns">
+            <p class="article-text">
+                <span class="dropcap">ס</span>ערה אדירה פרצה באזורנו לפני ימים אחדים, וסיפור מזעזע הגיע אל חופי תרשיש: אדם בשם יונה בן אמיתי, נוסע על אחת מספינות המסחר שלנו, הושלך אל לב הים הסוער על ידי צוות הספינה. האירוע המזעזע הזה הוביל לדיון ציבורי סוער בעירנו, כאשר חלק מהתושבים קוראים להעמיד את המלחים לדין באשמת רצח, בעוד שאחרים טוענים שזה היה מעשה הצלה הכרחי.
+            </p>
+
+            <p class="article-text">
+                לפי עדויות המלחים שהיו על הספינה, הסערה פרצה באופן פתאומי ואלים במיוחד. "מעולם לא ראינו משהו כזה," מספר הרב-חובל אליהו בן גרשום, איש ים ותיק בעל 30 שנות ניסיון. "גלים כהרים, רוח שאפשר היה לחתוך בסכין, והספינה כמעט נשברה לחצאין. כל המטען הושלך לים, תפללנו לכל האלים שמכירים - ושום דבר לא עזר."
+            </p>
+
+            <p class="article-text">
+                לדבריו, המלחים החליטו להטיל גורלות כדי לברר מי אשם בסערה המסתורית. "הגורל הצביע על יונה," מספר רב-החובל. "שאלנו אותו מי הוא, ומה עבודתו. הוא השיב לנו ואמר: 'עברי אנוכי, ואת ה׳ אלוהי השמים אני ירא, אשר עשה את הים ואת היבשה.' הוא הודה שהוא בורח מפני אלוהיו, ואמר לנו בפירוש - השליכוני אל הים, והסערה תשתוק."
+            </p>
+
+            <div class="quote-box">
+                השליכוני אל הים, והסערה תשתוק. אני יודע כי בשלי הסער הגדול הזה עליכם
+                <div style="margin-top: 10px; font-size: 14px; font-style: normal;">- דברי יונה בן אמיתי למלחים, לפי העדויות</div>
+            </div>
+
+            <p class="article-text">
+                רב-החובל מדגיש שהמלחים לא רצו להשליך את יונה למוות. "חתרנו בכל כוחנו לחזור אל החוף. הזענו, התאמצנו, אבל הים רק התגבר עלינו. הבנו שאין לנו שום סיכוי. היו על הספינה 40 איש - נשים, גברים, ילדים. מה היינו אמורים לעשות? להמתין שכולנו נטבע?"
+            </p>
+
+            <p class="article-text">
+                לבסוף, המלחים הסכימו לבקשתו של יונה. "תפללנו לאלוהיו שלו," מספר אחד המלחים, דוד בן שמעון. "אמרנו: 'אנא ה׳, אל נא נאבדה בנפש האיש הזה.' ואז הרמנו אותו והשלכנו אותו אל הים."
+            </p>
+
+            <p class="article-text">
+                מה שקרה אחר כך, לדברי כל המלחים והנוסעים, היה פלא אמיתי. "ברגע שיונה נגע במים," מעיד הנוסע יהושע בן אברהם, "הים השתתק. רגע אחד היו גלים עצומים, ורגע אחרי - שקט מוחלט. כמו שמישהו כיבה את הסערה כמו נר."
+            </p>
+
+            <div class="section-header">✦ דעות חלוקות בעיר ✦</div>
+
+            <p class="article-text">
+                אולם לא כל תושבי תרשיש משוכנעים שהמלחים פעלו נכון. רחל בת יעקב, אם לחמישה ילדים מהשכונה המזרחית, מזועזעת מהאירוע. "זה רצח," היא אומרת בתקיפות. "לא משנה מה הסיבות. זרקו אדם חי לים! איך אנשים יכולים לעשות דבר כזה ואחר כך לישון בשקט? מה יהיה הפעם הבאה - יזרקו קשישים? חולים?"
+            </p>
+
+            <div class="opinion">
+                <div class="opinion-author">📜 דעת הרב מרדכי הכהן, רב העיר:</div>
+                "זוהי שאלה מוסרית קשה ביותר. מצד אחד, נאמר 'לא תרצח' - ואין חריג לציווי זה. מצד שני, יש עקרון של 'פיקוח נפש' - הצלת חיים דוחה הכול. כאשר 40 איש היו בסכנת מוות ממשית, והאיש עצמו ביקש מהם להשליכו, האם זה רצח? זו שאלה שגדולי החכמים יצטרכו לדון בה."
+            </div>
+
+            <p class="article-text">
+                שמעון הסוחר, בעל חנות הבדים הגדולה בשוק, רואה את הדברים אחרת. "אני סוחר. אני מבין בחישובים. 40 נפשות מול נפש אחת. הרב-חובל עשה את החישוב הנכון. זו החלטה קשה, אבל נכונה. מה הייתם רוצים? שכולם ימותו?"
+            </p>
+
+            <p class="article-text">
+                אבל מרים בת אלישע, מורה בבית הספר המקומי, לא מסכימה. "אנחנו לא יכולים להתחיל לשים ערך מספרי על חיי אדם," היא טוענת. "היום זה 40 מול 1, מחר זה יהיה 10 מול 1, ואז 2 מול 1. איפה זה נעצר? יש עקרונות שאסור לשבור, גם במצבי חירום."
+            </p>
+
+            <div class="advertisement">
+                <div class="advertisement-title">🚢 ספינות יונתן ובניו 🚢</div>
+                הספינות הבטוחות והמהירות ביותר!<br>
+                40 שנות ניסיון בשיט למרחקים<br>
+                "אצלנו - כל הנוסעים מגיעים בשלום!"<br>
+                <small>נמל תרשיש, רציף מספר 7</small>
+            </div>
+
+            <p class="article-text">
+                נוסע אחר שהיה על הספינה, אליעזר בן דוד, עדיין לא מצליח להירגע מהאירוע. "אני לא ישן בלילות," הוא מספר, וקולו רועד. "אני רואה אותו נופל למים שוב ושוב. כן, הסערה נרגעה, אבל האם זה אומר שעשינו את הדבר הנכון? איך אוכל לחיות עם זה?"
+            </p>
+
+            <p class="article-text">
+                חנן הכומר, כוהן למזבח דגון באזורנו, מציע פרספקטיבה שונה. "זה היה מעשה אלוהי," הוא אומר בביטחון. "הסערה לא הייתה טבעית. היא הגיעה רק בגלל יונה, ונרגעה רק כשנפל למים. אולי אלוהיו של יונה רצה את זה? אולי יונה לא מת בכלל, ואלוהיו הציל אותו בדרך שאנחנו לא מבינים?"
+            </p>
+
+            <div class="opinion">
+                <div class="opinion-author">⚖️ דעת השופט אבנר בן יהודה:</div>
+                "פתחתי חקירה רשמית בעניין. נחקור את כל העדויות, נבדוק האם באמת לא הייתה אפשרות אחרת, ונברר האם המלחים פעלו בתום לב או ברשלנות. עד אז, אני מבקש מכל התושבים לא למהר לשפוט. זה לא שחור ולבן."
+            </div>
+
+            <p class="article-text">
+                ראש העיר, אדון משה בן יצחק, קרא אתמול לישיבת חירום של מועצת העיר. "זהו אירוע חמור שמעורר שאלות קשות על מוסר, חוק, ואמונה," הוא אמר. "אנחנו לא נסתיר את זה מתחת לשטיח. נבדוק, נדון, ונחליט איך לנהוג במקרים כאלה בעתיד."
+            </p>
+
+            <p class="article-text">
+                יש גם מי שמציעים שיונה אולי לא מת בכלל. דבורה הנביאה, אישה ידועה בחזונותיה, טוענת: "ראיתי בחלומי דג ענק בולע אדם. האלוהים שיכול להרגיע סערה כזו, יכול גם להציל אדם מטביעה. אולי יונה חי, ואנחנו פשוט לא יודעים את זה עדיין."
+            </p>
+
+            <div class="section-header">✦ מה הלאה? ✦</div>
+
+            <p class="article-text">
+                העירייה החליטה לכנס ועדה מיוחדת שתבחן את האירוע ותמליץ על נוהלי פעולה לעתיד. "אנחנו צריכים לקבוע כללים ברורים," אמר ראש העיר. "מה קברניט צריך לעשות במצב כזה? האם יש נהלים? מה החובות המוסריות והחוקיות?"
+            </p>
+
+            <p class="article-text">
+                בינתיים, המלחים חזרו לעבודתם, אך מרכז העיר מלא בקבוצות של אנשים שמתווכחים על האירוע. "זה מה שכולם מדברים עליו," אומר יוסף בר המשקאות. "בכל פינה יש ויכוח. יש שאומרים שהמלחים גיבורים, ויש שאומרים שהם רוצחים."
+            </p>
+
+            <p class="article-text">
+                אשתו של יונה, שמה לא נמסר לעיתונות, שוהה עם משפחתה ומסרבה לדבר עם העיתונאים. שכניה מספרים שהיא בהלם ולא מאמינה שבעלה איננו עוד.
+            </p>
+
+            <div class="quote-box">
+                השאלה האמיתית היא לא מה קרה ליונה, אלא מה למדנו מזה. האם אנחנו מוכנים להקריב אדם אחד בשביל הרבים? ואיפה עובר הגבול?
+                <div style="margin-top: 10px; font-size: 14px; font-style: normal;">- מתוך דברי הרב מרדכי הכהן בדרשתו בשבת</div>
+            </div>
+
+            <p class="article-text">
+                הסיפור הזה מעורר שאלות עמוקות על מוסר, אמונה, וערך החיים האנושיים. בימים הקרובים, ועדת החקירה תתכנס ותשמע עדויות. רק אז נוכל להבין באמת מה קרה באותו יום סוער בים, ומה זה אומר עלינו כחברה.
+            </p>
+
+            <p class="article-text">
+                אנחנו נמשיך לעקוב אחרי ההתפתחויות ולעדכן את הקוראים שלנו. אם יש לכם מידע נוסף או דעות בנושא, אתם מוזמנים להגיע למערכת העיתון בשוק המרכזי.
+            </p>
+
+            <p class="article-text" style="text-align: center; font-style: italic; margin-top: 30px; column-span: all;">
+                ♦ המשך הסיפור בגליון הבא ♦
+            </p>
+        </div>
+
+        <div class="footer">
+            <p><strong>עיתון תרשיש</strong> - העיתון המהימן של הממלכה</p>
+            <p>מערכת: שוק תרשיש המרכזי, בניין האבן הלבנה | כתובת למכתבים: רחוב הנמל 15</p>
+            <p style="margin-top: 10px;">מודפס על פפירוס איכותי במפעל הדפוס של שלמה ובניו</p>
+            <p style="margin-top: 5px; font-size: 10px;">כל הזכויות שמורות © 850 לפנה״ס</p>
+        </div>
+    </div>
+</body>
+</html>
